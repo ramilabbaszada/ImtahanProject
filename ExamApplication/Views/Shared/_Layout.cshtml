@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İmtahan Proqramı</title>
+    <style>
+        :root {
+            --bg: #0b1220;
+            --surface: #0f172a;
+            --card: #111c33;
+            --text: #e5e7eb;
+            --muted: #a5b4fc;
+            --line: rgba(255,255,255,0.10);
+            --accent: #60a5fa;
+            --accent-2: #34d399;
+            --danger: #fca5a5;
+        }
+
+        * { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body { margin: 0; background: radial-gradient(1200px 400px at 10% 0%, rgba(96,165,250,0.18), transparent 50%), var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif; }
+        a { color: var(--text); text-decoration: none; }
+        a:hover { color: #ffffff; text-decoration: underline; }
+        .container { width: min(1100px, calc(100% - 32px)); margin: 0 auto; }
+
+        header { position: sticky; top: 0; z-index: 10; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+        .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; gap: 12px; }
+        .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+        .brand-badge { width: 34px; height: 34px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, rgba(96,165,250,0.25), rgba(52,211,153,0.20)); border: 1px solid var(--line); }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+        .nav-links a { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; }
+        .nav-links a:hover { background: rgba(255,255,255,0.06); border-color: var(--line); text-decoration: none; }
+        .nav-actions { display: flex; align-items: center; gap: 10px; }
+        .chip { padding: 7px 10px; border-radius: 999px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); font-size: 13px; color: #c7d2fe; }
+
+        main { padding: 22px 0 34px; }
+        .card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); border: 1px solid var(--line); border-radius: 16px; padding: 16px; }
+        .stack { display: grid; gap: 12px; }
+
+        .alert { border-radius: 14px; padding: 12px 14px; border: 1px solid var(--line); background: rgba(255,255,255,0.04); }
+        .alert-danger { border-color: rgba(252,165,165,0.35); background: rgba(252,165,165,0.10); }
+
+        table { width: 100%; border-collapse: collapse; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+        th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+        th { background: rgba(255,255,255,0.04); font-size: 13px; color: #c7d2fe; }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .actions a { margin-right: 10px; color: #c7d2fe; }
+
+        label { display: block; margin-top: 10px; margin-bottom: 6px; color: #c7d2fe; font-size: 13px; }
+        input, select { width: min(520px, 100%); padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,0.03); color: var(--text); outline: none; }
+        input:focus, select:focus { border-color: rgba(96,165,250,0.55); box-shadow: 0 0 0 4px rgba(96,165,250,0.18); }
+
+        button, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,0.06); color: var(--text); cursor: pointer; }
+        button:hover, .btn:hover { background: rgba(255,255,255,0.10); text-decoration: none; }
+        .btn-primary { border-color: rgba(96,165,250,0.40); background: rgba(96,165,250,0.18); }
+        .btn-primary:hover { background: rgba(96,165,250,0.26); }
+        form.inline { display: inline; }
+
+        ul { margin: 8px 0 0 18px; }
+        li { margin: 6px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="brand">
+                    <span class="brand-badge">E</span>
+                    <a asp-controller="Home" asp-action="Index">İmtahan Proqramı</a>
+                </div>
+
+                <div class="nav-links">
+                    <a asp-controller="Home" asp-action="Index">Ana səhifə</a>
+                    <a asp-controller="Subjects" asp-action="Index">Dərslər</a>
+                    <a asp-controller="Students" asp-action="Index">Şagirdlər</a>
+                    <a asp-controller="Exams" asp-action="Index">İmtahanlar</a>
+                </div>
+
+                <div class="nav-actions">
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <span class="chip">@User.Identity!.Name</span>
+                        <form class="inline" asp-controller="Account" asp-action="Logout" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit">Çıxış</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="btn" asp-controller="Account" asp-action="Login">Giriş</a>
+                        <a class="btn btn-primary" asp-controller="Account" asp-action="Register">Qeydiyyat</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container stack">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    @Html.ValidationSummary()
+                </div>
+            }
+
+            @RenderBody()
+        </div>
+    </main>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

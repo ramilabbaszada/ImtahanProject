@@ -1,0 +1,34 @@
+@model List<Exam>
+
+<div class="card">
+    <h2>İmtahanlar</h2>
+    <p><a asp-action="Create">Yeni imtahan əlavə et</a></p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Dərsin kodu</th>
+            <th>Şagird nömrəsi</th>
+            <th>Tarix</th>
+            <th>Qiymət</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.SubjectCode</td>
+                <td>@item.StudentNumber</td>
+                <td>@item.ExamDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.Grade</td>
+                <td class="actions">
+                    <a asp-action="Details" asp-route-id="@item.Id">Bax</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Redaktə</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

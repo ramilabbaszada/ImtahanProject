@@ -1,0 +1,15 @@
+@model Subject
+
+<div class="card">
+    <h2>Dərsi sil</h2>
+
+    <p>Bu dərsi silmək istədiyinizə əminsiniz?</p>
+    <p><strong>@Model.Code</strong> - @Model.Name</p>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <button type="submit">Bəli, sil</button>
+        <a asp-action="Index" style="margin-left: 10px;">Xeyr</a>
+    </form>
+</div>

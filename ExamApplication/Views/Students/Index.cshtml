@@ -1,0 +1,34 @@
+@model List<Student>
+
+<div class="card">
+    <h2>Şagirdlər</h2>
+    <p><a asp-action="Create">Yeni şagird əlavə et</a></p>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nömrə</th>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Sinif</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Number</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Class</td>
+                <td class="actions">
+                    <a asp-action="Details" asp-route-id="@item.Id">Bax</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Redaktə</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

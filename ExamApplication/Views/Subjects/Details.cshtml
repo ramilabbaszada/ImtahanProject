@@ -1,0 +1,15 @@
+@model Subject
+
+<div class="card">
+    <h2>Dərs məlumatı</h2>
+
+    <p><strong>Kod:</strong> @Model.Code</p>
+    <p><strong>Ad:</strong> @Model.Name</p>
+    <p><strong>Sinif:</strong> @Model.Class</p>
+    <p><strong>Müəllim:</strong> @Model.TeacherFirstName @Model.TeacherLastName</p>
+
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Redaktə</a> |
+        <a asp-action="Index">Geri</a>
+    </p>
+</div>

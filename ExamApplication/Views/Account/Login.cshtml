@@ -1,0 +1,21 @@
+@model UserDto
+
+<div class="card">
+    <h2>Giriş</h2>
+
+    <form asp-action="Login" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+        <label asp-for="Username">İstifadəçi adı</label>
+        <input asp-for="Username" />
+
+        <label asp-for="Password">Şifrə</label>
+        <input asp-for="Password" type="password" />
+
+        <div style="margin-top: 12px;">
+            <button type="submit">Daxil ol</button>
+            <a asp-action="Register" style="margin-left: 10px;">Qeydiyyat</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="card">
+    <h2 style="margin: 0 0 8px;">İmtahan Proqramı</h2>
+    <p style="margin: 0; color: #c7d2fe;">
+        Dərsləri, şagirdləri və imtahan nəticələrini sadə şəkildə idarə edin.
+    </p>
+    <div style="margin-top: 14px;">
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a class="btn btn-primary" asp-controller="Exams" asp-action="Create">Yeni imtahan</a>
+            <a class="btn" asp-controller="Subjects" asp-action="Create" style="margin-left: 8px;">Yeni dərs</a>
+            <a class="btn" asp-controller="Students" asp-action="Create" style="margin-left: 8px;">Yeni şagird</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Giriş</a>
+            <a class="btn" asp-controller="Account" asp-action="Register" style="margin-left: 8px;">Qeydiyyat</a>
+        }
+    </div>
+</div>
+
+@if (User.Identity?.IsAuthenticated ?? false)
+{
+    <div class="card">
+        <h3 style="margin: 0 0 8px;">Tez keçidlər</h3>
+        <ul style="margin-top: 0;">
+            <li><a asp-controller="Subjects" asp-action="Index">Dərslərin siyahısı</a></li>
+            <li><a asp-controller="Students" asp-action="Index">Şagirdlərin siyahısı</a></li>
+            <li><a asp-controller="Exams" asp-action="Index">İmtahanların siyahısı</a></li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="card">
+        <h3 style="margin: 0 0 8px;">Qısa məlumat</h3>
+        <ul style="margin-top: 0;">
+            <li>Əvvəlcə dərsləri qeyd edin</li>
+            <li>Sonra şagirdləri qeyd edin</li>
+            <li>Sonda imtahan nəticələrini daxil edin</li>
+        </ul>
+    </div>
+}

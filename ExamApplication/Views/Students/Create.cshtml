@@ -1,0 +1,26 @@
+@model Student
+
+<div class="card">
+    <h2>Yeni şagird</h2>
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <label asp-for="Number">Nömrəsi</label>
+        <input asp-for="Number" type="number" min="1" max="99999" />
+
+        <label asp-for="FirstName">Adı</label>
+        <input asp-for="FirstName" maxlength="30" />
+
+        <label asp-for="LastName">Soyadı</label>
+        <input asp-for="LastName" maxlength="30" />
+
+        <label asp-for="Class">Sinifi</label>
+        <input asp-for="Class" type="number" min="1" max="11" />
+
+        <div style="margin-top: 12px;">
+            <button type="submit">Yadda saxla</button>
+            <a asp-action="Index" style="margin-left: 10px;">Geri</a>
+        </div>
+    </form>
+</div>

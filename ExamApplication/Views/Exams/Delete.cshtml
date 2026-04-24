@@ -1,0 +1,15 @@
+@model Exam
+
+<div class="card">
+    <h2>İmtahanı sil</h2>
+
+    <p>Bu imtahanı silmək istədiyinizə əminsiniz?</p>
+    <p><strong>@Model.SubjectCode</strong> / <strong>@Model.StudentNumber</strong> - @Model.ExamDate.ToString("yyyy-MM-dd")</p>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <button type="submit">Bəli, sil</button>
+        <a asp-action="Index" style="margin-left: 10px;">Xeyr</a>
+    </form>
+</div>

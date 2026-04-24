@@ -1,0 +1,29 @@
+@model Subject
+
+<div class="card">
+    <h2>Yeni dərs</h2>
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <label asp-for="Code">Dərsin kodu</label>
+        <input asp-for="Code" maxlength="3" />
+
+        <label asp-for="Name">Dərsin adı</label>
+        <input asp-for="Name" maxlength="30" />
+
+        <label asp-for="Class">Sinifi</label>
+        <input asp-for="Class" type="number" min="1" max="99" />
+
+        <label asp-for="TeacherFirstName">Müəllimin adı</label>
+        <input asp-for="TeacherFirstName" maxlength="20" />
+
+        <label asp-for="TeacherLastName">Müəllimin soyadı</label>
+        <input asp-for="TeacherLastName" maxlength="20" />
+
+        <div style="margin-top: 12px;">
+            <button type="submit">Yadda saxla</button>
+            <a asp-action="Index" style="margin-left: 10px;">Geri</a>
+        </div>
+    </form>
+</div>

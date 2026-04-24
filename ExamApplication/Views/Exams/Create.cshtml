@@ -1,0 +1,26 @@
+@model Exam
+
+<div class="card">
+    <h2>Yeni imtahan</h2>
+
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+        <label asp-for="SubjectCode">Dərsin kodu</label>
+        <select asp-for="SubjectCode" asp-items="ViewBag.Subjects"></select>
+
+        <label asp-for="StudentNumber">Şagirdin nömrəsi</label>
+        <select asp-for="StudentNumber" asp-items="ViewBag.Students"></select>
+
+        <label asp-for="ExamDate">İmtahan tarixi</label>
+        <input asp-for="ExamDate" type="date" />
+
+        <label asp-for="Grade">Qiyməti</label>
+        <input asp-for="Grade" type="number" min="0" max="9" />
+
+        <div style="margin-top: 12px;">
+            <button type="submit">Yadda saxla</button>
+            <a asp-action="Index" style="margin-left: 10px;">Geri</a>
+        </div>
+    </form>
+</div>

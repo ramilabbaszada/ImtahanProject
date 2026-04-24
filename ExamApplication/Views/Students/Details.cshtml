@@ -1,0 +1,15 @@
+@model Student
+
+<div class="card">
+    <h2>Şagird məlumatı</h2>
+
+    <p><strong>Nömrə:</strong> @Model.Number</p>
+    <p><strong>Ad:</strong> @Model.FirstName</p>
+    <p><strong>Soyad:</strong> @Model.LastName</p>
+    <p><strong>Sinif:</strong> @Model.Class</p>
+
+    <p>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Redaktə</a> |
+        <a asp-action="Index">Geri</a>
+    </p>
+</div>

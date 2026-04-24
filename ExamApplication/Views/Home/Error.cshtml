@@ -1,0 +1,22 @@
+<div class="card">
+    <h2>Xəta</h2>
+    @if (ViewBag.ValidationErrors != null)
+    {
+        <p>Doğrulama xətaları:</p>
+        <ul>
+            @foreach (var error in (IEnumerable<string>)ViewBag.ValidationErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    }
+    else if (ViewBag.ErrorMessage != null)
+    {
+        <p>@ViewBag.ErrorMessage</p>
+    }
+    else
+    {
+        <p>Sorğu işlənərkən xəta baş verdi.</p>
+    }
+    <p><a asp-controller="Home" asp-action="Index">Ana səhifəyə qayıt</a></p>
+</div>
